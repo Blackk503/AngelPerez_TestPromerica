@@ -1,4 +1,5 @@
 ﻿using Core.CustomClass;
+using Core.CustomEntities;
 using Core.Entities;
 using Core.Interfaces.CustomOperation;
 using Infrastructure.Interfaces.IRepositories;
@@ -26,6 +27,14 @@ namespace Infrastructure.Repositories
             if (user == null)
                 return BasicOperationResult<User>.Fail("El usuario no fue encontrado");
             return BasicOperationResult<User>.Ok(user);
+        }
+
+        public async Task<IOperationResult<ProfileUser>> GetByUserName(string username)
+        {
+            ProfileUser user = await _iUserServices.GetByUserName(username);
+            if (user == null)
+                return BasicOperationResult<ProfileUser>.Fail("El usuario y su role no fueron encontrados");
+            return BasicOperationResult<ProfileUser>.Ok(user);
         }
         #endregion
     }

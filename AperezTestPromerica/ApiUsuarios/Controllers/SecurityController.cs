@@ -57,29 +57,29 @@ namespace ApiUsuarios.Controllers
             });
         }
 
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[HttpPost("ObtenerRolesUsuario")]
-        //public async Task<IActionResult> GetRoleXUser([FromBody] string user)
-        //{
-        //    //_log.Info("Ha iniciado el proceso de loggin");
-        //    IOperationResult<ProfileUser> result = await _iUserRepository.GetByUserName(user);
-        //    //_log.Info("Ha finalizo el proceso de loggin");
-        //    if (!result.Success)
-        //    {
-        //        //_logger.LogError($"Hubo error con la autenticación. {result.MessageDetail}");
-        //        //_log.Error($"Hubo error con la autenticación del contribuyente. {JsonConvert.SerializeObject(loginModel)}");
-        //        return Ok(new { Code = StatusCodes.Status404NotFound, Message = "No se encontro el role del usuario" });
-        //    }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpPost("ObtenerRolesUsuario")]
+        public async Task<IActionResult> GetRoleXUser([FromBody] string user)
+        {
+            //_log.Info("Ha iniciado el proceso de loggin");
+            IOperationResult<ProfileUser> result = await _iUserRepository.GetByUserName(user);
+            //_log.Info("Ha finalizo el proceso de loggin");
+            if (!result.Success)
+            {
+                //_logger.LogError($"Hubo error con la autenticación. {result.MessageDetail}");
+                //_log.Error($"Hubo error con la autenticación del contribuyente. {JsonConvert.SerializeObject(loginModel)}");
+                return Ok(new { Code = StatusCodes.Status404NotFound, Message = "No se encontro el role del usuario" });
+            }
 
-        //    string tokenString = BuildTaxPayerToken(result.Entity);
+            string tokenString = BuildTaxPayerToken(result.Entity);
 
-        //    return Ok(new
-        //    {
-        //        Code = 1,
-        //        Data = tokenString
-        //    });
-        //}
+            return Ok(new
+            {
+                Code = 1,
+                Data = tokenString
+            });
+        }
 
         private string BuildTaxPayerToken(ProfileUser profile)
         {

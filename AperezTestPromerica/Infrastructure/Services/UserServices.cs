@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.CustomEntities;
+using Core.Entities;
 using Infrastructure.Data;
 using Infrastructure.Interfaces.IServices;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,24 @@ namespace Infrastructure.Services
                 .Where(sig => sig.UserName == username && sig.Password == password)
                 .FirstOrDefaultAsync();
             return user;
+        }
+
+        public async Task<ProfileUser> GetByUserName(string username)
+        {
+            var query = await _persistenceContext.Users
+                .Join(_persistenceContext.Roles,
+                us => us.RoleId,
+                r => r.Id,
+                (us, r) =>
+                new { Users = us, Roles = r })
+                .Where(us => us.Users.UserName == username).FirstOrDefaultAsync();
+            ProfileUser regUser = new()
+            {
+                Id = query.Users.Id,
+                UserName = query.Users.UserName,
+                TypeUser = query.Roles.Name
+            };
+            return regUser;
         }
         #endregion
     }
