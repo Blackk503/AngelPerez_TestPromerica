@@ -3,15 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="DTOS\" />
-    <Folder Include="Interfaces\CustomOperation\" />
-    <Folder Include="CustomEntities\" />
-    <Folder Include="CustomClass\" />
-  </ItemGroup>
 
 </Project>
