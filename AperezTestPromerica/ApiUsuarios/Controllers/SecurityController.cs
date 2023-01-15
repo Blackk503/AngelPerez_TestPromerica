@@ -32,21 +32,14 @@ namespace ApiUsuarios.Controllers
         #endregion
 
         #region METHODS
-
-
-
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost("ValidarCredenciales")]
         public async Task<IActionResult> Authenticate([FromBody] UserLoginDto loginModel)
         {
-            //_log.Info("Ha iniciado el proceso de loggin");
             IOperationResult<User> result = await _iUserRepository.LoginUser(loginModel.UserName, loginModel.Password);
-            //_log.Info("Ha finalizo el proceso de loggin");
             if (!result.Success)
             {
-                //_logger.LogError($"Hubo error con la autenticación. {result.MessageDetail}");
-                //_log.Error($"Hubo error con la autenticación del contribuyente. {JsonConvert.SerializeObject(loginModel)}");
                 return Ok(new { Code = StatusCodes.Status404NotFound, Message = "No se encontro el usuario" });
             }
 
