@@ -1,24 +1,24 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Productos";
 }
-
-<h1>Products</h1>
+<h1>Productos</h1>
 <hr />
 <div class="container text-center">
     <div class="row align-items-start">
         <div class="col">
-            <button id="ProductA">*ProuctoA</button>
+            <button type="button" id="ProductA" class="btn btn-outline-success">*ProuctoA</button>
         </div>
         <div class="col">
-            <button id="ProductB">*ProductoB</button>
+            <button type="button" id="ProductB" class="btn btn-outline-success">*ProuctoB</button>
         </div>
         <div class="col">
-            <button id="ProductC">*ProductoC</button>
+            <button type="button" id="ProductC" class="btn btn-outline-success">*ProuctoC</button>
         </div>
     </div>
 </div>
-<div id="partialSelected">
+<div id="partialSelected" class="shadow-none p-3 mb-5 bg-body-tertiary rounded text-center mt-3">
 </div>
+
 <script type="text/javascript">
     $('#ProductA').click(function (e) {
         $('#partialSelected').load('/Product/ProductoAPartial');
