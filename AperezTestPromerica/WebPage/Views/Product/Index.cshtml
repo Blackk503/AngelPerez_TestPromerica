@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products</h1>
+<hr />
+<div class="container text-center">
+    <div class="row align-items-start">
+        <div class="col">
+            <button id="ProductA">*ProuctoA</button>
+        </div>
+        <div class="col">
+            <button id="ProductB">*ProductoB</button>
+        </div>
+        <div class="col">
+            <button id="ProductC">*ProductoC</button>
+        </div>
+    </div>
+</div>
+<div id="partialSelected">
+</div>
+<script type="text/javascript">
+    $('#ProductA').click(function (e) {
+        $('#partialSelected').load('/Product/ProductoAPartial');
+    });
+    $('#ProductB').click(function (e) {
+        $('#partialSelected').load('/Product/ProductoBPartial');
+    });
+    $('#ProductC').click(function (e) {
+        $('#partialSelected').load('/Product/ProductoCPartial');
+    });
+</script>

@@ -55,13 +55,9 @@ namespace ApiUsuarios.Controllers
         [HttpPost("ObtenerRolesUsuario")]
         public async Task<IActionResult> GetRoleXUser([FromBody] string user)
         {
-            //_log.Info("Ha iniciado el proceso de loggin");
             IOperationResult<ProfileUser> result = await _iUserRepository.GetByUserName(user);
-            //_log.Info("Ha finalizo el proceso de loggin");
             if (!result.Success)
             {
-                //_logger.LogError($"Hubo error con la autenticación. {result.MessageDetail}");
-                //_log.Error($"Hubo error con la autenticación del contribuyente. {JsonConvert.SerializeObject(loginModel)}");
                 return Ok(new { Code = StatusCodes.Status404NotFound, Message = "No se encontro el role del usuario" });
             }
 
@@ -83,8 +79,6 @@ namespace ApiUsuarios.Controllers
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, profile.UserName),
-                //new Claim(JwtRegisteredClaimNames.Email, profile.Username),
-                //new Claim("Id", profile.Id.ToString()),
                 new Claim(ClaimTypes.Role, profile.TypeUser)
                 // Add some values
                 //new Claim("nameFild", Convert.ToBase64String(Encoding.UTF8.GetBytes(profile.xxxxxx)))
